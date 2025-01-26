@@ -1,0 +1,31 @@
+package com.example.doorcenter.customer;
+
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Entity
+@Getter
+@AllArgsConstructor
+@Setter
+@NoArgsConstructor
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, updatable = false)
+    private Long id;
+
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
+
+    @Override
+    public String toString() {
+        return "Номер телефона: " + phoneNumber;
+    }
+
+}
