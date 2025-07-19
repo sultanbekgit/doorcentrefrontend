@@ -9,9 +9,9 @@ import { ExtentionComponent } from './extention/extention.component';
 import { CartComponent } from './cart/cart.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-// import { AdminFrameComponent } from './admin-frame/admin-frame.component';
+import { AdminFrameComponent } from './admin-frame/admin-frame.component';
 import { AdminPlatbandComponent } from './admin-platband/admin-platband.component';
-// import { AdminExtensionComponent } from './admin-extension/admin-extension.component';
+import { AdminExtensionComponent } from './admin-extension/admin-extension.component';
 import { AdminAuthGuard } from './admin-auth.guard';
 
 const routes: Routes = [
@@ -23,9 +23,9 @@ const routes: Routes = [
   { path: 'home/cart', component: CartComponent },
   { path: 'home/login', component: LoginComponent },
   { path: 'home/admin', component: AdminComponent, canActivate: [AdminAuthGuard] },
-  // { path: 'home/admin/frame', component: AdminFrameComponent, canActivate: [AdminAuthGuard] },
+  { path: 'home/admin/frame', component: AdminFrameComponent, canActivate: [AdminAuthGuard] },
   { path: 'home/admin/platband', component: AdminPlatbandComponent, canActivate: [AdminAuthGuard] },
-  // { path: 'home/admin/extension', component: AdminExtensionComponent, canActivate: [AdminAuthGuard] },
+  { path: 'home/admin/extension', component: AdminExtensionComponent, canActivate: [AdminAuthGuard] },
 
 
 

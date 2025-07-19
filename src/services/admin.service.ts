@@ -19,19 +19,33 @@ export class AdminService {
 
   loginAsAdmin(): void {
     this.adminLoggedIn = true;
+    localStorage.setItem('isAdmin', 'true');
   }
 
   logoutAdmin(): void {
     this.adminLoggedIn = false;
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
     this.router.navigate(['home']);
-
   }
 
   isAdminLoggedIn(): boolean {
-    return this.adminLoggedIn;
+    // Check both local state and localStorage for persistence
+    const storedAdmin = localStorage.getItem('isAdmin') === 'true';
+    if (storedAdmin && !this.adminLoggedIn) {
+      this.adminLoggedIn = true;
+    }
+    return this.adminLoggedIn || storedAdmin;
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { 
+    // Check localStorage on service initialization to restore admin state
+    const storedAdmin = localStorage.getItem('isAdmin') === 'true';
+    if (storedAdmin) {
+      this.adminLoggedIn = true;
+    }
+  }
 
   public getAuthHeaders(): { [header: string]: string } {
     const username = localStorage.getItem('username');
@@ -61,7 +75,7 @@ export class AdminService {
           // Store credentials in localStorage (for simplicity)
           localStorage.setItem('username', username);
           localStorage.setItem('password', password);
-          localStorage.setItem('isAdmin', "yes");
+          localStorage.setItem('isAdmin', "true");
           this.loginAsAdmin();
           this.router.navigate(['home/admin']); // Redirect to admin dashboard
           console.log("nice!")

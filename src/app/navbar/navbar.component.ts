@@ -19,7 +19,10 @@ export class NavbarComponent {
   
   public isAdminLogged(){
     return this.adminService.isAdminLoggedIn()
+  }
 
+  public logout(){
+    this.adminService.logoutAdmin();
   }
 
 }

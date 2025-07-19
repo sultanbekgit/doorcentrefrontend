@@ -22,8 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { AdminPlatbandComponent } from './admin-platband/admin-platband.component';
-// import { AdminFrameComponent } from './admin-frame/admin-frame.component';
-// import { AdminExtensionComponent } from './admin-extension/admin-extension.component';
+import { AdminFrameComponent } from './admin-frame/admin-frame.component';
+import { AdminExtensionComponent } from './admin-extension/admin-extension.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +38,9 @@ import { AdminPlatbandComponent } from './admin-platband/admin-platband.componen
     CartComponent,
     AdminComponent,
     LoginComponent,
-    AdminPlatbandComponent
-    // AdminFrameComponent,
-    // AdminExtensionComponent
+    AdminPlatbandComponent,
+    AdminFrameComponent,
+    AdminExtensionComponent
   ],
   imports: [
     BrowserAnimationsModule, // Required for animations
