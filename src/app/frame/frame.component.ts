@@ -36,7 +36,7 @@ export class FrameComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-    private apiServerUrl = environment.apiBaseUrl;
+    private apiServerUrl = environment.apiUrl;
     // Base URL for your backend server
   
   

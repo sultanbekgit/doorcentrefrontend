@@ -27,7 +27,7 @@ export class CartComponent {
   ) { }
 
 
-    private apiServerUrl = environment.apiBaseUrl;
+    private apiServerUrl = environment.apiUrl;
     // Base URL for your backend server
   
   

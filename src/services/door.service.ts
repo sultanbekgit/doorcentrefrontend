@@ -12,7 +12,7 @@ import { NONE_TYPE } from '@angular/compiler';
 })
 export class DoorService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiUrl;
 
   constructor(private http: HttpClient, private adminService: AdminService) { }
 

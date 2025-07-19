@@ -20,7 +20,7 @@ export class AdminPlatbandComponent implements OnInit {
   public editForm: FormGroup;
   public addForm: FormGroup;
   public selectedPlatband: Platband | null = null;
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiUrl;
 
   @ViewChild('editPlatbandModal') editPlatbandModal!: TemplateRef<any>;
   @ViewChild('addPlatbandModal') addPlatbandModal!: TemplateRef<any>;

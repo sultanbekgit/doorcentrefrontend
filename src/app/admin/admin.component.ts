@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   @ViewChild('addMultipleImageInput') addMultipleImageInput!: ElementRef;
   @ViewChild('addMultipleVideoInput') addMultipleVideoInput!: ElementRef;
 
-    private apiServerUrl = environment.apiBaseUrl;
+    private apiServerUrl = environment.apiUrl;
       // Base URL for your backend server
     
     

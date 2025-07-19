@@ -34,7 +34,7 @@ export class ExtentionComponent implements OnInit {
   constructor(private extensionService: ExtensionService, private router: Router, private cartService: CartService,  
     private toastr: ToastrService) { }
 
-   private apiServerUrl = environment.apiBaseUrl;
+   private apiServerUrl = environment.apiUrl;
     // Base URL for your backend server
   
   

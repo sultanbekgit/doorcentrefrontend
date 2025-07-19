@@ -31,7 +31,7 @@ export class DoorComponent implements OnInit {
   private widthInput: string = '';
   private currentSortOption: string = '';
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiUrl;
   // Base URL for your backend server
 
 

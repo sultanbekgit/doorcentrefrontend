@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiUrl;
   errorMessage: string = '';
   private adminLoggedIn = false;
   

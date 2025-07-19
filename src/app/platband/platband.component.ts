@@ -35,7 +35,7 @@ export class PlatbandComponent implements OnInit {
   constructor(private platbandService: PlatbandService, private router: Router, private cartService: CartService, private toastr: ToastrService) { }
 
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiUrl;
   // Base URL for your backend server
 
 

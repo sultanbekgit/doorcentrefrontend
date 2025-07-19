@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
-    apiBaseUrl: 'http://localhost:5555'
-  };
+  production: false,
+  apiUrl: 'https://doorcenter-latest.onrender.com'
+};
   

@@ -10,7 +10,7 @@ import { AdminService } from './admin.service';
   providedIn: 'root'
 })
 export class FrameService {
- private apiServerUrl = environment.apiBaseUrl;
+ private apiServerUrl = environment.apiUrl;
 
   constructor(private http: HttpClient, private adminService: AdminService){}
 
