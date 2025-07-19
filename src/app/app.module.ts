@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Add this
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,13 +21,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { AdminFrameComponent } from './admin-frame/admin-frame.component';
 import { AdminPlatbandComponent } from './admin-platband/admin-platband.component';
-import { AdminExtensionComponent } from './admin-extension/admin-extension.component';
+// import { AdminFrameComponent } from './admin-frame/admin-frame.component';
+// import { AdminExtensionComponent } from './admin-extension/admin-extension.component';
 
 @NgModule({
   declarations: [
-
     AppComponent,
     DoorComponent,
     NavbarComponent,
@@ -39,9 +38,9 @@ import { AdminExtensionComponent } from './admin-extension/admin-extension.compo
     CartComponent,
     AdminComponent,
     LoginComponent,
-    AdminFrameComponent,
-    AdminPlatbandComponent,
-    AdminExtensionComponent
+    AdminPlatbandComponent
+    // AdminFrameComponent,
+    // AdminExtensionComponent
   ],
   imports: [
     BrowserAnimationsModule, // Required for animations
