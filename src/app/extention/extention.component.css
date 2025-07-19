@@ -1,0 +1,68 @@
+.extension-image {
+    width: 100%; /* Ensure the image fills the card */
+    height: 200px; /* Fixed height for consistency */
+    object-fit: contain; /* Show entire image without cropping */
+    object-position: center; /* Center the image both horizontally and vertically */
+    background-color: #f8f9fa; /* Light background to fill empty space around image */
+    border-radius: 10px 10px 0 0; /* Rounded corners for the top */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.extension-image:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift the card slightly */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Shadow effect */
+}
+
+.btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth button hover effect */
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.badge {
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 5px; /* Slight rounding for the badge */
+}
+
+.text-primary {
+    color: #0056b3 !important;
+  }
+  
+/* Mobile Responsive Design */
+@media (max-width: 576px) {
+    .extension-image {
+        height: 180px; /* Smaller height on mobile */
+    }
+}
+
+/* Tablet Design */
+@media (min-width: 577px) and (max-width: 768px) {
+    .extension-image {
+        height: 190px; /* Medium height on tablets */
+    }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+    .extension-image {
+        height: 220px; /* Larger height on bigger screens */
+    }
+}
+  

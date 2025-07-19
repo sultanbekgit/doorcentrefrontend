@@ -1,0 +1,18 @@
+<nav class="header-container">
+    <ul class="header-menu">
+      <li><a routerLink="/home">Двери</a></li>
+      <li><a routerLink="home/platbands">Наличники</a></li>
+      <li><a routerLink="home/frames">Коробка</a></li>
+      <li><a routerLink="home/extensions">Доборка</a></li>
+    </ul>
+</nav>
+
+
+<nav class="header-container" *ngIf="isAdminLogged()">
+  <ul class="header-menu">
+    <li><a routerLink="/home/admin">Двери Редактировать </a></li>
+    <li><a routerLink="home/admin/platband">Наличники Редактировать </a></li>
+    <li><a routerLink="home/admin/frame">Коробка Редактировать </a></li>
+    <li><a routerLink="home/admin/extension">Доборка Редактировать  </a></li>
+  </ul>
+</nav>

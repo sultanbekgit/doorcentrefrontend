@@ -1,0 +1,47 @@
+<div class="container my-5">
+  <!-- Frames Listing -->
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let frame of frames">
+      <div class="card shadow-lg border-0 h-100">
+        <!-- Frame Image -->
+        <div class="position-relative">
+          <img [src]="hello() + frame.imageUrl" class="card-img-top rounded-top frame-image" [alt]="frame.type + ' - ' + frame.color" />
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body d-flex flex-column">
+          <!-- Frame Type -->
+          <h5 class="card-title text-center text-dark fw-bold">{{ frame.type }}</h5>
+
+          <!-- Frame Details -->
+          <p class="text-muted mb-2">
+            <strong>Цвет:</strong> <span class="text-dark">{{ frame.color }}</span>
+          </p>
+          <p class="text-muted mb-2">
+            <strong>Ширина:</strong> <span class="text-dark">{{ frame.width }} мм</span>
+          </p>
+          <p class="text-muted mb-2">
+            <strong>Толщина:</strong> <span class="text-dark">{{ frame.thickness }} мм</span>
+          </p>
+
+          <!-- Variants Dropdown -->
+          <div *ngIf="frame.variants && frame.variants.length > 0" class="mb-3">
+            <label for="frameVariant-{{ frame.id }}" class="form-label text-muted small">
+              <strong>Доступные высоты:</strong>
+            </label>
+            <select id="frameVariant-{{ frame.id }}" class="form-select border-primary" (change)="onVariantChange($event, frame)">
+              <option *ngFor="let variant of frame.variants" [value]="variant.id">
+                {{ variant.height }} мм - {{ formatPrice(variant.price) }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Action Button -->
+          <button class="btn btn-outline-primary w-100 fw-bold mt-auto" (click)="onSelectFrame(frame)">
+            🛒 Добавить в корзину
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

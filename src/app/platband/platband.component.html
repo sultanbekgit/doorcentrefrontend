@@ -1,0 +1,45 @@
+<div class="container my-5">
+  <!-- Platbands Listing -->
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let platband of platbands">
+      <div class="card shadow-lg border-0 h-100">
+        <!-- Platband Image -->
+        <div class="position-relative">
+          <img [src]="hello() + platband.imageUrl" class="card-img-top rounded-top frame-image" [alt]="platband.type + ' - ' + platband.color" />
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body d-flex flex-column">
+          <!-- Platband Type -->
+          <h5 class="card-title text-center text-dark fw-bold">{{ platband.type }}</h5>
+
+          <!-- Platband Details -->
+          <p class="text-muted mb-2">
+            <strong>Цвет:</strong> <span class="text-dark">{{ platband.color }}</span>
+          </p>
+          <p class="text-muted mb-2">
+            <strong>Ширина:</strong> <span class="text-dark">{{ platband.width }} мм</span>
+          </p>
+      
+
+          <!-- Variants Dropdown -->
+          <div *ngIf="platband.variants && platband.variants.length > 0" class="mb-3">
+            <label for="platbandVariant-{{ platband.id }}" class="form-label text-muted small">
+              <strong>Доступные высоты:</strong>
+            </label>
+            <select id="platbandVariant-{{ platband.id }}" class="form-select border-primary" (change)="onVariantChange($event, platband)">
+              <option *ngFor="let variant of platband.variants" [value]="variant.id">
+                {{ variant.height }} мм - {{ formatPrice(variant.price) }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Action Button -->
+          <button class="btn btn-outline-primary w-100 fw-bold mt-auto" (click)="onSelectPlatband(platband)">
+            🛒 Добавить в корзину
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

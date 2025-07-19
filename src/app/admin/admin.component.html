@@ -1,0 +1,195 @@
+<div class="container my-5">
+  <!-- Navigation Between Admin Pages -->
+  <nav class="mb-4">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-link active" routerLink="/home/admin">🚪 Двери</a>
+      <a class="nav-link" routerLink="/home/admin/platband">🪟 Наличники</a>
+      <a class="nav-link" routerLink="/home/admin/frame">🖼️ Рамки</a>
+      <a class="nav-link" routerLink="/home/admin/extension">➕ Доборки</a>
+    </div>
+  </nav>
+
+  <!-- Add Door Button -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Управление дверями</h2>
+    <button class="btn btn-success" (click)="openAddModal()">➕ Добавить дверь</button>
+  </div>
+
+  <!-- Door Listing -->
+  <div class="row g-4 mb-5">
+    <div class="col-md-4" *ngFor="let door of doors">
+      <div class="card shadow-lg border-0 h-100">
+        <!-- The image URL here is built by the backend. Prepend your backend URL if needed. -->
+        <img [src]="hello() + door.imageUrl" class="card-img-top" [alt]="door.name" />
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold">{{ door.name }}</h5>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" (click)="openEditModal(door)">✏️ Редактировать</button>
+            <button class="btn btn-danger" (click)="deleteDoor(door)">🗑️ Удалить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Door Modal -->
+  <ng-template #editDoorModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Редактировать дверь</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label">Название</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+  
+        <div class="form-check mb-3">
+          <input type="checkbox" class="form-check-input" formControlName="withMirror" />
+          <label class="form-check-label">Со стеклом</label>
+        </div>
+  
+        <!-- Current Image Preview -->
+        <div class="mb-3" *ngIf="selectedDoor?.imageUrl">
+          <label class="form-label">Текущее изображение:</label>
+          <!-- Prepend the backend URL if needed -->
+          <img [src]="hello() + selectedDoor?.imageUrl" alt="Current Image" class="img-fluid" />
+        </div>
+
+        <!-- Current Multiple Images Preview -->
+        <ng-container *ngIf="selectedDoor && selectedDoor.images && selectedDoor.images.length > 0">
+          <div class="mb-3">
+            <label class="form-label">Текущие изображения:</label>
+            <div class="row">
+              <div class="col-md-3" *ngFor="let image of selectedDoor.images">
+                <img [src]="hello() + image.mediaUrl" alt="Current Image" class="img-fluid mb-2" />
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Current Video Preview -->
+        <div class="mb-3" *ngIf="selectedDoor?.videoUrl">
+          <label class="form-label">Текущее видео:</label>
+          <video [src]="hello() + selectedDoor?.videoUrl" controls preload="metadata" class="w-100" style="max-height: 300px;">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- Current Multiple Videos Preview -->
+        <ng-container *ngIf="selectedDoor && selectedDoor.videos && selectedDoor.videos.length > 0">
+          <div class="mb-3">
+            <label class="form-label">Текущие видео:</label>
+            <div class="row">
+              <div class="col-md-6" *ngFor="let video of selectedDoor.videos">
+                <video [src]="hello() + video.mediaUrl" controls preload="metadata" class="w-100 mb-2" style="max-height: 200px;">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+  
+        <!-- Multiple Images Upload Section -->
+        <div class="mb-3">
+          <label class="form-label">Загрузить несколько изображений</label>
+          <input type="file" #multipleImageInput class="form-control" accept="image/*" multiple />
+        </div>
+
+        <!-- Multiple Videos Upload Section -->
+        <div class="mb-3">
+          <label class="form-label">Загрузить несколько видео</label>
+          <input type="file" #multipleVideoInput class="form-control" accept="video/*" multiple />
+        </div>
+  
+        <!-- Variants Editing Section -->
+        <div formArrayName="variants" class="mb-3">
+          <h6>Варианты двери (размеры и цена):</h6>
+          <div *ngFor="let variant of variants.controls; let i = index" [formGroupName]="i" class="border p-3 mb-2">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="form-label">Высота</label>
+                <input type="number" class="form-control" formControlName="height" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Ширина</label>
+                <input type="number" class="form-control" formControlName="width" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Цена</label>
+                <input type="number" class="form-control" formControlName="price" />
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <button type="button" class="btn btn-danger w-100" (click)="removeVariant(i)">Удалить</button>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary mt-2" (click)="addVariant()">Добавить вариант</button>
+        </div>
+  
+        <button type="submit" class="btn btn-success w-100" [disabled]="editForm.invalid">Сохранить изменения</button>
+      </form>
+    </div>
+  </ng-template>
+
+  <!-- Add Door Modal -->
+  <ng-template #addDoorModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Добавить новую дверь</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addForm" (ngSubmit)="onAddSubmit()">
+        <div class="mb-3">
+          <label class="form-label">Название</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Введите название двери" />
+        </div>
+  
+        <div class="form-check mb-3">
+          <input type="checkbox" class="form-check-input" formControlName="withMirror" />
+          <label class="form-check-label">Со стеклом</label>
+        </div>
+  
+        <!-- Multiple Images Upload Section -->
+        <div class="mb-3">
+          <label class="form-label">Загрузить несколько изображений</label>
+          <input type="file" #addMultipleImageInput class="form-control" accept="image/*" multiple />
+        </div>
+
+        <!-- Multiple Videos Upload Section -->
+        <div class="mb-3">
+          <label class="form-label">Загрузить несколько видео</label>
+          <input type="file" #addMultipleVideoInput class="form-control" accept="video/*" multiple />
+        </div>
+  
+        <!-- Variants Adding Section -->
+        <div formArrayName="variants" class="mb-3">
+          <h6>Варианты двери (размеры и цена):</h6>
+          <div *ngFor="let variant of addVariants.controls; let i = index" [formGroupName]="i" class="border p-3 mb-2">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="form-label">Высота</label>
+                <input type="number" class="form-control" formControlName="height" placeholder="см" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Ширина</label>
+                <input type="number" class="form-control" formControlName="width" placeholder="см" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Цена</label>
+                <input type="number" class="form-control" formControlName="price" placeholder="руб" />
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <button type="button" class="btn btn-danger w-100" (click)="removeVariantFromAddForm(i)">Удалить</button>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary mt-2" (click)="addVariantToAddForm()">Добавить вариант</button>
+        </div>
+  
+        <button type="submit" class="btn btn-success w-100" [disabled]="addForm.invalid">Добавить дверь</button>
+      </form>
+    </div>
+  </ng-template>
+</div>

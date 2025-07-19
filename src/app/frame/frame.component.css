@@ -1,0 +1,91 @@
+/* General Card Styling */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Styling */
+.card-img-top,
+.frame-image {
+  height: 220px;
+  object-fit: contain; /* Show entire image without cropping */
+  object-position: center; /* Center the image both horizontally and vertically */
+  background-color: #FFFFF0; /* Solid ivory background */
+  border-radius: 10px 10px 0 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-img-top:hover,
+.frame-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling */
+.btn-primary {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  border: none;
+  font-weight: bold;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #0056b3, #003f87);
+}
+
+.btn-outline-primary {
+  border: 2px solid #007bff;
+  color: #007bff;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Badge Styling */
+.badge {
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* Utility Classes */
+.text-primary {
+  color: #0056b3 !important;
+}
+
+.text-dark {
+  color: #343a40 !important;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 576px) {
+  .card-img-top,
+  .frame-image {
+    height: 180px; /* Smaller height on mobile */
+  }
+}
+
+/* Tablet Design */
+@media (min-width: 577px) and (max-width: 768px) {
+  .card-img-top,
+  .frame-image {
+    height: 200px; /* Medium height on tablets */
+  }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+  .card-img-top,
+  .frame-image {
+    height: 250px; /* Larger height on bigger screens */
+  }
+}

@@ -1,0 +1,198 @@
+.container{
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 12px 40px rgba(139, 116, 93, 0.15);
+    border-radius: 24px;
+    margin-bottom: 9rem;
+    border: 1px solid rgba(212, 165, 116, 0.2);
+}
+.message{
+    text-align: center;
+    color: #d4a574;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+}
+img{
+    width: 100px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(139, 116, 93, 0.12);
+}
+
+.item div{
+    flex-grow: 1;
+    margin-left: 20px;
+}
+.item h2{
+    font-size: 1.4rem;
+    color: #3e2723;
+    font-weight: 600;
+}
+.item p{
+    font-size: 0.9rem;
+    color: #5d4037;
+    margin: 10px 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.controls button {
+  background: linear-gradient(135deg, #d4a574 0%, #b8956f 100%);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(139, 116, 93, 0.2);
+}
+
+.controls button:hover {
+  background: linear-gradient(135deg, #b8956f 0%, #9c7f5a 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(139, 116, 93, 0.3);
+}
+
+.controls span {
+  font-size: 1.3rem;
+  margin: 0 15px;
+  color: #3e2723;
+  font-weight: 600;
+}
+
+.price{
+    font-size: 1.4rem;
+    color: #3e2723;
+    font-weight: bold;
+}
+
+.container h2:last-child{
+    text-align: right;
+    font-size: 1.6rem;
+    color: #3e2723;
+    margin-top: 20px;
+    font-weight: 700;
+}
+.checkout, .clear{
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 20px auto;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(139, 116, 93, 0.2);
+}
+.checkout{
+    background: linear-gradient(135deg, #d4a574 0%, #b8956f 100%);
+}
+.clear{
+    background: linear-gradient(135deg, #8d6e63 0%, #6d4c41 100%);
+}
+.checkout:hover{
+    background: linear-gradient(135deg, #b8956f 0%, #9c7f5a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 116, 93, 0.3);
+}
+.clear:hover{
+    background: linear-gradient(135deg, #6d4c41 0%, #5d4037 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(109, 76, 65, 0.3);
+}
+.dropdown-form {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    border-radius: 16px;
+    animation: dropdown 0.3s ease-in-out;
+    max-width: 400px; /* Constrain the width */
+    box-shadow: 0 8px 24px rgba(139, 116, 93, 0.1);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ensure label and input align */
+    margin-bottom: 15px; /* Add margin between fields */
+  }
+  
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #3e2723;
+  }
+  
+  .form-group input {
+    padding: 12px;
+    border: 2px solid rgba(212, 165, 116, 0.3);
+    border-radius: 12px;
+    font-size: 14px;
+    width: 100%; /* Ensure inputs are aligned evenly */
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+  }
+
+  .form-group input:focus {
+    border-color: #d4a574;
+    box-shadow: 0 0 0 0.2rem rgba(212, 165, 116, 0.25);
+    outline: none;
+  }
+  
+  .actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .actions button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #d4a574 0%, #b8956f 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(139, 116, 93, 0.2);
+  }
+  
+  .actions button:hover {
+    background: linear-gradient(135deg, #b8956f 0%, #9c7f5a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 116, 93, 0.3);
+  }
+  
+  @keyframes dropdown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,0 +1,115 @@
+<div class="container my-5">
+  <!-- Enhanced Filter Section with Better Spacing -->
+  <div class="filter-section mb-5 p-4 rounded shadow-sm bg-light">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-4 mb-3">
+        <label for="heightInput" class="form-label fw-bold text-secondary mb-2">Высота:</label>
+        <input type="text" id="heightInput" class="form-control border-primary rounded-pill px-3 py-2" placeholder="Введите высоту" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="widthInput" class="form-label fw-bold text-secondary mb-2">Ширина:</label>
+        <input type="text" id="widthInput" class="form-control border-primary rounded-pill px-3 py-2" placeholder="Введите ширину" />
+      </div>
+      <div class="col-md-4 mb-3 d-flex align-items-end">
+        <button class="btn btn-primary w-100 py-3 px-4 rounded-pill fw-bold shadow-sm filter-btn" (click)="filterDoors()">
+          <i class="fas fa-search me-2 filter-icon"></i>Найти
+        </button>
+      </div>
+    </div>
+
+    <!-- Sorting and Reset Controls -->
+    <div class="row mt-4 justify-content-center">
+      <div class="col-md-4 mb-2">
+        <label for="sortSelect" class="form-label fw-bold text-secondary mb-2">Сортировать по:</label>
+        <select id="sortSelect" class="form-select rounded-pill border-primary" (change)="onSortChange($event)">
+          <option value="">Без сортировки</option>
+          <option value="price-asc">Цена (по возрастанию)</option>
+          <option value="price-desc">Цена (по убыванию)</option>
+          <option value="size-asc">Размер (по возрастанию)</option>
+          <option value="size-desc">Размер (по убыванию)</option>
+          <option value="name">По алфавиту</option>
+        </select>
+      </div>
+      <div class="col-md-4 mb-2 d-flex align-items-end">
+        <button class="btn btn-outline-secondary w-100 py-2 px-4 rounded-pill fw-bold" (click)="resetFilters()">
+          <i class="fas fa-undo me-2"></i>Сбросить фильтры
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doors Listing with Enhanced Spacing -->
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let door of (filteredDoors.length > 0 ? filteredDoors : doors)" [attr.data-door-id]="door.id">
+      <div class="card shadow-lg border-0 h-100 d-flex flex-column enhanced-card">
+        <!-- Media Container -->
+        <div class="media-container position-relative">
+          <!-- Horizontal Scrollable Content -->
+          <div class="scroll-container" (wheel)="onScroll($event)" #scrollContainer>
+            
+            <!-- Display all media items -->
+            <div class="scroll-item" *ngFor="let media of getMediaArray(door)">
+              <img *ngIf="media.mediaType === 'IMAGE'" [src]="hello() + media.mediaUrl" class="door-image" [alt]="door.name" />
+              <video *ngIf="media.mediaType === 'VIDEO'" [src]="hello() + media.mediaUrl" class="door-video" controls preload="metadata">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            
+            <!-- Fallback for doors without any media -->
+            <div class="scroll-item" *ngIf="getTotalMediaCount(door) === 0">
+              <div class="no-media-placeholder">
+                <i class="fa fa-image" style="font-size: 48px; color: #ccc;"></i>
+                <p>Нет медиафайлов</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enhanced Media Navigation Controls -->
+          <div class="media-nav-overlay" *ngIf="getTotalMediaCount(door) > 1">
+            <button class="nav-btn nav-btn-left" 
+                    (click)="navigateToMedia($event, door, 'prev')" 
+                    title="Предыдущий"
+                    [attr.aria-label]="'Предыдущий'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <button class="nav-btn nav-btn-right" 
+                    (click)="navigateToMedia($event, door, 'next')" 
+                    title="Следующий"
+                    [attr.aria-label]="'Следующий'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Enhanced Card Body -->
+        <div class="card-body flex-grow-1 d-flex flex-column p-4">
+          <!-- Enhanced Title with Better Typography -->
+          <h4 class="card-title text-dark fw-bold text-center mb-3 product-title">{{ door.name }}</h4>
+
+          <!-- Enhanced Variants Dropdown -->
+          <div *ngIf="door.variants && door.variants.length > 0" class="mb-4 flex-grow-1">
+            <label for="door-variant-{{ door.id }}" class="form-label text-muted small fw-semibold mb-2">
+              <strong>Доступные размеры:</strong>
+            </label>
+            <select id="door-variant-{{ door.id }}" class="form-select enhanced-dropdown rounded-pill border-primary" (change)="onVariantChange($event, door)">
+              <option *ngFor="let variant of door.variants" [value]="variant.id">
+                <span class="variant-size">{{ variant.height }} x {{ variant.width }}</span> - 
+                <span class="variant-price">{{ formatPrice(variant.price) }}</span>
+              </option>
+            </select>
+          </div>
+
+          <!-- Enhanced Add to Cart Button -->
+          <button class="btn btn-outline-primary w-100 py-3 mt-auto rounded-pill fw-bold enhanced-cart-btn" (click)="onSelectDoor(door)">
+            <i class="fas fa-shopping-cart me-2"></i>Добавить в корзину
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+.door-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: contain; /* Show entire image without cropping */
+    object-position: center; /* Center the image both horizontally and vertically */
+    background-color: #f8f9fa; /* Light background to fill empty space around image */
+    border-radius: 8px 8px 0 0;
+}
+  
+.modal-content {
+    border-radius: 12px;
+}
+  
+.card {
+    transition: transform 0.2s;
+}
+  
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Modal image styling */
+.modal-body img {
+    max-height: 200px;
+    object-fit: contain;
+    object-position: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 180px;
+    }
+    
+    .modal-body img {
+        max-height: 150px;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    .card-img-top {
+        height: 200px;
+    }
+    
+    .modal-body img {
+        max-height: 180px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-img-top {
+        height: 250px;
+    }
+    
+    .modal-body img {
+        max-height: 250px;
+    }
+}

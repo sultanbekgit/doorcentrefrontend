@@ -1,0 +1,48 @@
+<div class="container">
+  <h2 style="text-align: center;">Корзина</h2>
+  <p *ngIf="message" class="message">{{ message }}</p>
+
+  <div *ngIf="cart.length === 0">
+    <p>Корзина пустая</p>
+  </div>
+
+  <div *ngIf="cart.length > 0">
+    <ul>
+      <li *ngFor="let item of cart" class="item">
+        <img [src]="hello() +  item.imageUrl" [alt]="item.name">
+        <div>
+          <h2>{{ item.name }}</h2>
+          <span class="price">{{ formatPrice(item.price) }}</span>
+
+          <div class="controls">
+            <button (click)="decrementItem(item.id)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="incrementItem(item.id)">+</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <h2>Total: {{ formatPrice(totalPrice) }}</h2>
+    <button class="clear" (click)="clearCart()">🗑️ Очистить корзину</button>
+
+    <button class="checkout" (click)="toggleCheckoutForm()">✔️ Оформить заказ</button>
+
+    <!-- Checkout Form Dropdown -->
+    <div class="dropdown-form" *ngIf="isCheckoutVisible">
+      <h3>Оформить заказ</h3>
+      <form (ngSubmit)="submitOrder()">
+
+        <div class="form-group">
+          <label for="phoneNumber">Телефон:</label>
+          <input id="phoneNumber" [(ngModel)]="phoneNumber" name="phoneNumber" required>
+
+          <label for="city">Город:</label>
+          <input id="city" [(ngModel)]="city" name="city" required>
+        </div>
+        <div class="actions">
+          <button type="submit">Подтвердить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

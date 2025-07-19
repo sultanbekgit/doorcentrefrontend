@@ -23,9 +23,13 @@ public class Customer {
     @Column(unique = true, nullable = false)
     private String phoneNumber;
 
+    @Column(unique = true)
+    private String city;
+
     @Override
     public String toString() {
-        return "Номер телефона: " + phoneNumber;
+        return "Номер телефона: " + phoneNumber +
+                ", Город: " + city;
     }
 
 }

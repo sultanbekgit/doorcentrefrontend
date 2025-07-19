@@ -9,14 +9,13 @@ import com.example.doorcenter.order.Orders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
+
 @RequestMapping("/bot")
 public class TelegramBotController {
 
@@ -49,7 +48,9 @@ public class TelegramBotController {
 
         messageBuilder.append("💰 *Общая сумма заказа: *").append(totalPrice).append("₸\n\n")
                 .append("👤 *Детали клиента:*\n")
-                .append("• Номер телефона: *").append(customer.getPhoneNumber()).append("*\n");
+                .append("• Номер телефона: *").append(customer.getPhoneNumber()).append("*\n")
+                .append("• Город: *").append("*\n");
+
 
         // Log the details for debugging
         System.out.println("Заказы и клиент получены: " + messageBuilder);

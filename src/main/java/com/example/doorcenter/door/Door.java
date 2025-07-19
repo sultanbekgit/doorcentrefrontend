@@ -24,6 +24,8 @@ public class Door implements Serializable {
     private Boolean withMirror;
     private String imageUrl;
 
+
+
     @OneToMany(mappedBy = "door", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DoorVariant> variants; // List of height-width-price combinations
 
@@ -36,5 +38,6 @@ public class Door implements Serializable {
         this.imageUrl = imageUrl;
         this.variants=variants;
     }
+
 
 }

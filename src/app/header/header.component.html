@@ -1,0 +1,38 @@
+<header class="header d-flex justify-content-between align-items-center">
+    <div>
+        <h2>Центр Дверей</h2>
+    </div>
+
+    <div>
+        <div class="header-icons">
+       
+            <a href="https://wa.me/77770414449"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                    width="24">&nbsp; WhatsApp</a>
+            <a href="https://2gis.kz/astana/firm/70000001040458746?m=71.365548%2C51.178242%2F16"><img
+                    src="https://github.com/sultanbekgit/images/blob/main/2gislogo.png?raw=true" alt="2GIS" width="35">
+                2GIS</a>
+            <a href="https://www.instagram.com/doorcentre/" target="_blank" class="link">
+                <i class="bi bi-instagram"></i> Instagram
+            </a>
+            <!-- Updated phone number to enable click-to-call -->
+            <a href="tel:+77770414449" class="link">
+                <i class="fas fa-phone-alt"></i> 8 (777) 041-44-49 &nbsp;
+            </a>
+            <a routerLink="home/cart" class="link"><i class="bi bi-cart3"></i> Корзина <span
+                    class="cartCount badge bg-danger mt-1">
+                    {{ cartService.getCart().length }}
+                </span></a>
+            <ng-container *ngIf="adminService.isAdminLoggedIn()">
+                <a routerLink="/admin" class="me-3 link">
+                    <i class="bi bi-person-fill-gear"></i> Admin
+                </a>
+                <button class="btn btn-outline-danger" (click)="adminService.logoutAdmin()" *ngIf="adminService.isAdminLoggedIn()">
+                    Выйти
+                </button>
+            </ng-container>
+
+
+        </div>
+    </div>
+</header>

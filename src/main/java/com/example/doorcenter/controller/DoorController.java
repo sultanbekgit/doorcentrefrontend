@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/door")
+@CrossOrigin(origins = "*")
 public class DoorController {
     private final IDoorService doorService;
 
@@ -38,6 +39,4 @@ public class DoorController {
         List<Door> doors = doorService.getDoorByHeightAndWidth(request.getHeight(), request.getWidth());
         return new ResponseEntity<>(doors, HttpStatus.OK);
     }
-
-
 }
