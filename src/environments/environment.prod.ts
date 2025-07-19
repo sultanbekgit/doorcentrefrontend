@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://doorcenter-latest.onrender.com'
+  apiUrl: 'https://doorcenter.onrender.com/'
 };
   
