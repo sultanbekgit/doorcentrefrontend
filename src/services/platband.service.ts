@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { Platband } from '../app/models/platband';
 import { ProductMedia } from '../app/models/product-media';
 import { AdminService } from './admin.service';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +15,20 @@ export class PlatbandService {
 
   private apiServerUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private adminService: AdminService) { }
+  constructor(private http: HttpClient, private adminService: AdminService, private loadingService: LoadingService) { }
 
   public getPlatbands(): Observable<Platband[]> {
-    return this.http.get<Platband[]>(`${this.apiServerUrl}/platband/all`);
+    this.loadingService.startLoading();
+    return this.http.get<Platband[]>(`${this.apiServerUrl}/platband/all`).pipe(
+      finalize(() => this.loadingService.stopLoading())
+    );
   }
 
   public getPlatbandById(id: number): Observable<Platband> {
-    return this.http.get<Platband>(`${this.apiServerUrl}/platband/${id}`);
+    this.loadingService.startLoading();
+    return this.http.get<Platband>(`${this.apiServerUrl}/platband/${id}`).pipe(
+      finalize(() => this.loadingService.stopLoading())
+    );
   }
 
   // Original single file update method

@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminPlatbandComponent } from './admin-platband/admin-platband.component';
 import { AdminFrameComponent } from './admin-frame/admin-frame.component';
 import { AdminExtensionComponent } from './admin-extension/admin-extension.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AdminExtensionComponent } from './admin-extension/admin-extension.compo
     LoginComponent,
     AdminPlatbandComponent,
     AdminFrameComponent,
-    AdminExtensionComponent
+    AdminExtensionComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserAnimationsModule, // Required for animations
