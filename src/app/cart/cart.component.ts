@@ -10,6 +10,7 @@ import { BotService } from '../../services/bot.service';
 import { OrderCustomerRequest } from '../models/order-customer-request';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: 'app-cart',
@@ -22,7 +23,8 @@ export class CartComponent {
 
 
   constructor(private cartService: CartService, private router: Router, private customerService: CustomerService,
-    private orderService: OrderService, private botService: BotService, private toastr: ToastrService
+    private orderService: OrderService, private botService: BotService, private toastr: ToastrService,
+    private urlService: UrlService
     
   ) { }
 
@@ -33,6 +35,10 @@ export class CartComponent {
   
     hello(): string {
       return this.apiServerUrl
+    }
+
+    getMediaUrl(url: string | null | undefined): string {
+      return this.urlService.getMediaUrl(url);
     }
   
   

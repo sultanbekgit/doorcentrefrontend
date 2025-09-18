@@ -5,7 +5,7 @@
       <div class="card shadow-lg border-0 h-100">
         <!-- Platband Image -->
         <div class="position-relative">
-          <img [src]="hello() + platband.imageUrl" class="card-img-top rounded-top frame-image" [alt]="platband.type + ' - ' + platband.color" />
+          <img [src]="getMediaUrl(platband.imageUrl)" class="card-img-top rounded-top frame-image" [alt]="platband.type + ' - ' + platband.color" />
         </div>
 
         <!-- Card Body -->

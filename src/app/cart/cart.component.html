@@ -9,7 +9,7 @@
   <div *ngIf="cart.length > 0">
     <ul>
       <li *ngFor="let item of cart" class="item">
-        <img [src]="hello() +  item.imageUrl" [alt]="item.name">
+        <img [src]="getMediaUrl(item.imageUrl)" [alt]="item.name">
         <div>
           <h2>{{ item.name }}</h2>
           <span class="price">{{ formatPrice(item.price) }}</span>

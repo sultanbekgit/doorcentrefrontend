@@ -5,7 +5,7 @@
       <div class="card shadow-lg border-0 h-100">
         <!-- Frame Image -->
         <div class="position-relative">
-          <img [src]="hello() + frame.imageUrl" class="card-img-top rounded-top frame-image" [alt]="frame.type + ' - ' + frame.color" />
+          <img [src]="getMediaUrl(frame.imageUrl)" class="card-img-top rounded-top frame-image" [alt]="frame.type + ' - ' + frame.color" />
         </div>
 
         <!-- Card Body -->

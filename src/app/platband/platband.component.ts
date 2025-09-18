@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
+import { UrlService } from '../services/url.service';
 
 
 interface Product {
@@ -32,7 +33,7 @@ export class PlatbandComponent implements OnInit {
   public selectedType: string = '';
   public product: Product | undefined;
 
-  constructor(private platbandService: PlatbandService, private router: Router, private cartService: CartService, private toastr: ToastrService) { }
+  constructor(private platbandService: PlatbandService, private router: Router, private cartService: CartService, private toastr: ToastrService, private urlService: UrlService) { }
 
 
   private apiServerUrl = environment.apiUrl;
@@ -41,6 +42,10 @@ export class PlatbandComponent implements OnInit {
 
   hello(): string {
     return this.apiServerUrl
+  }
+
+  getMediaUrl(url: string | null | undefined): string {
+    return this.urlService.getMediaUrl(url);
   }
 
   ngOnInit(): void {

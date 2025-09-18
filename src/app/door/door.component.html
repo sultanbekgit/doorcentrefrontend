@@ -49,8 +49,8 @@
             
             <!-- Display all media items -->
             <div class="scroll-item" *ngFor="let media of getMediaArray(door)">
-              <img *ngIf="media.mediaType === 'IMAGE'" [src]="hello() + media.mediaUrl" class="door-image" [alt]="door.name" />
-              <video *ngIf="media.mediaType === 'VIDEO'" [src]="hello() + media.mediaUrl" class="door-video" controls preload="metadata">
+              <img *ngIf="media.mediaType === 'IMAGE'" [src]="getMediaUrl(media.mediaUrl)" class="door-image" [alt]="door.name" />
+              <video *ngIf="media.mediaType === 'VIDEO'" [src]="getMediaUrl(media.mediaUrl)" class="door-video" controls preload="metadata">
                 Your browser does not support the video tag.
               </video>
             </div>

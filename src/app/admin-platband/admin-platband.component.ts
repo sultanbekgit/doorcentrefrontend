@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { PlatbandVariant } from '../models/platband-variant';
 import { environment } from '../../environments/environment';
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: 'app-admin-platband',
@@ -31,7 +32,8 @@ export class AdminPlatbandComponent implements OnInit {
     private platbandService: PlatbandService,
     private fb: FormBuilder,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private urlService: UrlService
   ) {
     this.editForm = this.fb.group({
       width: [null, Validators.required],
@@ -55,6 +57,10 @@ export class AdminPlatbandComponent implements OnInit {
 
   hello(): string {
     return this.apiServerUrl;
+  }
+
+  getMediaUrl(url: string | null | undefined): string {
+    return this.urlService.getMediaUrl(url);
   }
 
   get variants(): FormArray {

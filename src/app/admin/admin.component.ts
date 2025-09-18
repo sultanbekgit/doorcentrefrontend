@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DoorVariant } from '../models/door-variant';
 import { environment } from '../../environments/environment';
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: 'app-admin',
@@ -32,7 +33,11 @@ export class AdminComponent implements OnInit {
     
     
       hello(): string {
-        return this.apiServerUrl
+        return this.urlService.getMediaUrl('')
+      }
+
+      getMediaUrl(url: string | null | undefined): string {
+        return this.urlService.getMediaUrl(url);
       }
     
 
@@ -40,7 +45,8 @@ export class AdminComponent implements OnInit {
     private doorService: DoorService,
     private fb: FormBuilder,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private urlService: UrlService
   ) {
     this.editForm = this.fb.group({
       name: ['', Validators.required],

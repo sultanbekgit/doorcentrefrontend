@@ -60,7 +60,7 @@
                 <!-- Current Image Preview -->
                 <div class="mb-3" *ngIf="selectedPlatband?.imageUrl">
                     <label class="form-label">Текущее изображение:</label>
-                    <img [src]="hello() + selectedPlatband?.imageUrl" alt="Current Image" class="img-fluid" />
+                    <img [src]="getMediaUrl(selectedPlatband?.imageUrl)" alt="Current Image" class="img-fluid" />
                 </div>
 
                 <!-- File Upload Section -->

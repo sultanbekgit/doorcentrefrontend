@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CartService } from '../cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
+import { UrlService } from '../services/url.service';
 
 
 interface Product {
@@ -33,7 +34,8 @@ export class FrameComponent implements OnInit {
     private frameService: FrameService,
     private router: Router,
     private cartService: CartService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private urlService: UrlService
   ) {}
 
     private apiServerUrl = environment.apiUrl;
@@ -42,6 +44,10 @@ export class FrameComponent implements OnInit {
   
     hello(): string {
       return this.apiServerUrl
+    }
+
+    getMediaUrl(url: string | null | undefined): string {
+      return this.urlService.getMediaUrl(url);
     }
   
 
